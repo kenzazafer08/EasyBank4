@@ -41,7 +41,14 @@ public class AgencyDAO implements AgencyI {
 
     @Override
     public Optional<Agency> SearchByCode(String code) {
-        return Optional.empty();
+        try (Session session = sessionFactory.openSession()) {
+            Agency agency = session.get(Agency.class, code);
+
+            return Optional.ofNullable(agency);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override

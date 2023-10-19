@@ -1,10 +1,9 @@
 package dto;
 
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
-import lombok.Data;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +20,8 @@ public class Agency {
     private String address;
     @Column(name = "phone")
     private String phone;
+    @Column(name = "deleted")
+    private Boolean deleted;
 
     public Agency() {
     }
@@ -62,5 +63,13 @@ public class Agency {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

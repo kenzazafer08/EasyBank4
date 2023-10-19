@@ -17,4 +17,14 @@ public class AgencyService {
         return agencyDAO.add(agency);
     }
 
+    public Optional<Agency> findAgency(String code){
+        Optional<Agency> agency = agencyDAO.SearchByAddress(code);
+        if(agency.isPresent()){
+            if(agency.get().getDeleted()){
+                return Optional.empty();
+            }return agency;
+        }
+        return Optional.empty();
+    }
+
 }
