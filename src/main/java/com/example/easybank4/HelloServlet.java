@@ -28,11 +28,17 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Optional<Agency> agency = agencyService.searchByAddress("ZERKTOUNI SAFI");
-        if(agency.isPresent()){
-            out.println(agency.get().getName());
+        Agency agency = new Agency();
+        agency.setCode("SYLFO");
+        agency.setName("test");
+        agency.setAddress("70 RUE EL OUMAM QUA HOPITAL SAFI");
+        agency.setPhone("0634047964");
+        agency.setDeleted(false);
+        Optional<Agency> updated = agencyService.update(agency);
+        if(updated.isPresent()){
+            out.println(updated.get().getName());
         }else{
-            out.println("No agency found");
+            out.println("no agency updated");
         }
 
         out.println("</body></html>");

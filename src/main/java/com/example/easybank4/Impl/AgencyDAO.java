@@ -78,9 +78,16 @@ public class AgencyDAO implements AgencyI {
 
     @Override
     public Optional<Agency> update(Agency agency) {
-        return Optional.empty();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(agency);
+            transaction.commit();
+            return Optional.of(agency);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
-
     @Override
     public Optional<Agency> SearchByAddress(String address) {
         try (Session session = sessionFactory.openSession()) {

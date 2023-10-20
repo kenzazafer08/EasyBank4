@@ -44,4 +44,10 @@ public class AgencyService {
         return agencyDAO.SearchByAddress(Address);
     }
 
+    public  Optional<Agency> update(Agency agency){
+        if(agencyDAO.SearchByCode(agency.getCode()).isPresent()){
+            return agencyDAO.update(agency);
+        }return Optional.empty();
+    }
+
 }
