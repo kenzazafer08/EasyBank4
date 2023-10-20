@@ -2,13 +2,12 @@ package com.example.easybank4;
 
 import java.io.*;
 import java.util.List;
-import java.util.Optional;
 
 
-import dto.Agency;
+import com.example.easybank4.dto.Agency;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import services.AgencyService;
+import com.example.easybank4.services.AgencyService;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {

@@ -1,8 +1,8 @@
-package Impl;
+package com.example.easybank4.Impl;
 
-import dao.AgencyI;
-import dto.Agency;
-import helpers.helper;
+import com.example.easybank4.dto.Agency;
+import com.example.easybank4.dao.AgencyI;
+import com.example.easybank4.helpers.helper;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

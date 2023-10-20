@@ -1,8 +1,8 @@
-package services;
+package com.example.easybank4.services;
 
-import Impl.AgencyDAO;
-import dao.AgencyI;
-import dto.Agency;
+import com.example.easybank4.Impl.AgencyDAO;
+import com.example.easybank4.dao.AgencyI;
+import com.example.easybank4.dto.Agency;
 
 import java.util.List;
 import java.util.Optional;

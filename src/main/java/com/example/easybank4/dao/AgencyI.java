@@ -1,6 +1,6 @@
-package dao;
+package com.example.easybank4.dao;
 
-import dto.Agency;
+import com.example.easybank4.dto.Agency;
 
 import java.util.List;
 import java.util.Optional;
