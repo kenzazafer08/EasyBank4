@@ -2,6 +2,7 @@ package com.example.easybank4;
 
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 
 import com.example.easybank4.dto.Agency;
@@ -27,9 +28,11 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        List<Agency> agencies = agencyService.list();
-        for (Agency agency : agencies){
-            out.println(agency.getName());
+        Optional<Agency> agency = agencyService.searchByAddress("ZERKTOUNI SAFI");
+        if(agency.isPresent()){
+            out.println(agency.get().getName());
+        }else{
+            out.println("No agency found");
         }
 
         out.println("</body></html>");

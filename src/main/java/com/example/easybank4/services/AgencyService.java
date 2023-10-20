@@ -40,5 +40,8 @@ public class AgencyService {
         return agencyDAO.AgencyList();
     }
 
+    public Optional<Agency> searchByAddress(String Address){
+        return agencyDAO.SearchByAddress(Address);
+    }
 
 }

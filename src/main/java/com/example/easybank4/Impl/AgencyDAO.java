@@ -83,9 +83,17 @@ public class AgencyDAO implements AgencyI {
 
     @Override
     public Optional<Agency> SearchByAddress(String address) {
-        return Optional.empty();
-    }
+        try (Session session = sessionFactory.openSession()) {
+            Criteria criteria = session.createCriteria(Agency.class);
+            criteria.add(Restrictions.eq("address", address)); // Assuming you have an "address" field
+            Agency agency = (Agency) criteria.uniqueResult();
 
+            return Optional.ofNullable(agency);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+    }
     @Override
     public List<Agency> AgencyList() {
         try (Session session = sessionFactory.openSession()) {
