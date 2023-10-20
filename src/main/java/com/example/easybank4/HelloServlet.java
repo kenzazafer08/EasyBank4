@@ -24,13 +24,12 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Optional<Agency> agency = agencyService.findAgency("15AEr");
-        if(agency.isPresent()){
-            out.println("Agency name :" +agency.get().getName());
+        Boolean agency = agencyService.deleteAgency("XOcRY");
+        if(agency){
+            out.println("Agency deleted successfully");
         }else{
             out.println("No agency found");
         }

@@ -5,6 +5,7 @@ import dto.Agency;
 import helpers.helper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Optional;
@@ -52,8 +53,24 @@ public class AgencyDAO implements AgencyI {
     }
 
     @Override
-    public Boolean delete(String code) {
-        return null;
+    public Boolean delete(String code){
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Agency entity = session.get(Agency.class, code);
+            if (entity != null) {
+                entity.setDeleted(true);
+                session.update(entity);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

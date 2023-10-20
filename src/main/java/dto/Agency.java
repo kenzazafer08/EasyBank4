@@ -3,6 +3,8 @@ package dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "Agency")
+@Where(clause = "deleted = false")
 public class Agency {
     @Id
     @Column(name = "code")

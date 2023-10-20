@@ -27,4 +27,13 @@ public class AgencyService {
         return Optional.empty();
     }
 
+    public boolean deleteAgency(String code){
+        if(agencyDAO.SearchByCode(code).isPresent()) {
+            return agencyDAO.delete(code);
+        }else{
+            return false;
+        }
+    }
+
+
 }
