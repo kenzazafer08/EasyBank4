@@ -4,6 +4,7 @@ import Impl.AgencyDAO;
 import dao.AgencyI;
 import dto.Agency;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AgencyService {
@@ -33,6 +34,10 @@ public class AgencyService {
         }else{
             return false;
         }
+    }
+
+    public List<Agency> list(){
+        return agencyDAO.AgencyList();
     }
 
 

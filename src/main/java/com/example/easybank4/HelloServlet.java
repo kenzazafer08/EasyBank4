@@ -1,6 +1,7 @@
 package com.example.easybank4;
 
 import java.io.*;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -27,11 +28,9 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Boolean agency = agencyService.deleteAgency("XOcRY");
-        if(agency){
-            out.println("Agency deleted successfully");
-        }else{
-            out.println("No agency found");
+        List<Agency> agencies = agencyService.list();
+        for (Agency agency : agencies){
+            out.println(agency.getName());
         }
 
         out.println("</body></html>");

@@ -2,6 +2,7 @@ package dao;
 
 import dto.Agency;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AgencyI {
@@ -10,4 +11,5 @@ public interface AgencyI {
     Boolean delete(String code);
     Optional<Agency> update(Agency agency);
     Optional<Agency> SearchByAddress(String address);
+    List<Agency> AgencyList();
 }

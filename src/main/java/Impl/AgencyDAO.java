@@ -3,11 +3,14 @@ package Impl;
 import dao.AgencyI;
 import dto.Agency;
 import helpers.helper;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AgencyDAO implements AgencyI {
@@ -81,5 +84,18 @@ public class AgencyDAO implements AgencyI {
     @Override
     public Optional<Agency> SearchByAddress(String address) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<Agency> AgencyList() {
+        try (Session session = sessionFactory.openSession()) {
+            Criteria criteria = session.createCriteria(Agency.class);
+            criteria.add(Restrictions.eq("deleted", false));
+            List<Agency> agencies = criteria.list();
+            return agencies;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
