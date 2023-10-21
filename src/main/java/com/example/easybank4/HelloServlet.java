@@ -6,6 +6,8 @@ import java.util.Optional;
 
 
 import com.example.easybank4.dto.Agency;
+import com.example.easybank4.dto.Client;
+import com.example.easybank4.services.ClientService;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import com.example.easybank4.services.AgencyService;
@@ -13,12 +15,12 @@ import com.example.easybank4.services.AgencyService;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    private AgencyService agencyService; // Import and instantiate the AgencyService class
+    private ClientService clientService;
 
 
     public void init() {
         message = "Hello World!";
-        agencyService = new AgencyService(); // Initialize the AgencyService
+        clientService = new ClientService();
 
     }
 
@@ -28,17 +30,18 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Agency agency = new Agency();
-        agency.setCode("SYLFO");
-        agency.setName("test");
-        agency.setAddress("70 RUE EL OUMAM QUA HOPITAL SAFI");
-        agency.setPhone("0634047964");
-        agency.setDeleted(false);
-        Optional<Agency> updated = agencyService.update(agency);
-        if(updated.isPresent()){
-            out.println(updated.get().getName());
+        Client client = new Client();
+        client.setFirstName("kniza");
+        client.setLastName("jaafar");
+        client.setPhone("0634047964");
+        client.setAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
+        client.setDeleted(false);
+        out.println(client.getFirstName());
+        Optional<Client> created = clientService.addClient(client);
+        if(created.isPresent()){
+            out.println("Client created successfully :"+created.get().getCode());
         }else{
-            out.println("no agency updated");
+            out.println("no client created");
         }
 
         out.println("</body></html>");
