@@ -1,4 +1,4 @@
-package helpers;
+package com.example.easybank4.helpers;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
