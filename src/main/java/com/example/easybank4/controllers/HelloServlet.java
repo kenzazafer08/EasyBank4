@@ -1,4 +1,4 @@
-package com.example.easybank4;
+package com.example.easybank4.controllers;
 
 import java.io.*;
 

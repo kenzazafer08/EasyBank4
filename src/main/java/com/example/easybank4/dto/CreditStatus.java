@@ -1,4 +1,4 @@
-package dto;
+package com.example.easybank4.dto;
 
 public enum CreditStatus {
     pending,
