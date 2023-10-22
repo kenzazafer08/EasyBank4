@@ -1,7 +1,8 @@
-package com.example.easybank4;
+package com.example.easybank4.controllers;
 
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 
 import com.example.easybank4.dto.Agency;
@@ -26,6 +27,11 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        Agency agency = new Agency();
+        agency.setName("CIH");
+        agency.setPhone("0534047964");
+        agency.setAddress("boulevard kenydy");
+        Optional<Agency> created = agencyService.AddAgency(agency);
         out.println("</body></html>");
     }
 
