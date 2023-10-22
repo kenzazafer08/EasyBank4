@@ -2,6 +2,7 @@ package com.example.easybank4.dto;
 
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@Where(clause = "deleted = false")
 public class Client extends Person {
 
     @Id

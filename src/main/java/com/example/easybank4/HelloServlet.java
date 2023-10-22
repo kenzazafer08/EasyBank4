@@ -26,17 +26,15 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Optional<Client> found = clientService.getClientByCode("Kep");
-        if(found.isPresent()){
-            out.println("Client found successfully :"+found.get().getLastName());
+        boolean found = clientService.deleteClient("Kep");
+        if(found){
+            out.println("Client deleted successfully ");
         }else{
-            out.println("no client found");
+            out.println("no client deleted");
         }
-
         out.println("</body></html>");
     }
 

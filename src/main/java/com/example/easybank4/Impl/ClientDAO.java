@@ -56,7 +56,22 @@ public class ClientDAO implements ClientI {
 
     @Override
     public boolean delete(String id) {
-        return false;
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Client entity = session.get(Client.class, id);
+            if (entity != null) {
+                entity.setDeleted(true);
+                session.update(entity);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
