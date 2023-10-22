@@ -81,7 +81,6 @@ public class ClientDAO implements ClientI {
     public List<Client> showList() {
         try (Session session = sessionFactory.openSession()) {
             Criteria criteria = session.createCriteria(Client.class);
-            criteria.add(Restrictions.eq("deleted", false));
             List<Client> clients = criteria.list();
             return clients;
         } catch (Exception e) {

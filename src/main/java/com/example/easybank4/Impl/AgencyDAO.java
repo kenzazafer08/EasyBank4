@@ -105,7 +105,6 @@ public class AgencyDAO implements AgencyI {
     public List<Agency> AgencyList() {
         try (Session session = sessionFactory.openSession()) {
             Criteria criteria = session.createCriteria(Agency.class);
-            criteria.add(Restrictions.eq("deleted", false));
             List<Agency> agencies = criteria.list();
             return agencies;
         } catch (Exception e) {

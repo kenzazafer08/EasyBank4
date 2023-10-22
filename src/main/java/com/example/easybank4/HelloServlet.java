@@ -15,12 +15,12 @@ import com.example.easybank4.services.AgencyService;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    private ClientService clientService;
+    private AgencyService agencyService;
 
 
     public void init() {
         message = "Hello World!";
-        clientService = new ClientService();
+        agencyService = new AgencyService();
 
     }
 
@@ -29,10 +29,10 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        List<Client> clients = clientService.getClientList();
-        for (Client c:
-             clients) {
-            out.println(c.getFirstName());
+        List<Agency> agencies = agencyService.list();
+        for (Agency c:
+             agencies) {
+            out.println(c.getName());
         }
         out.println("</body></html>");
     }
