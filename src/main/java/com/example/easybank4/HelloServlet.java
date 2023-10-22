@@ -2,12 +2,9 @@ package com.example.easybank4;
 
 import java.io.*;
 import java.util.List;
-import java.util.Optional;
 
 
 import com.example.easybank4.dto.Agency;
-import com.example.easybank4.dto.Client;
-import com.example.easybank4.services.ClientService;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import com.example.easybank4.services.AgencyService;
@@ -29,11 +26,6 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        List<Agency> agencies = agencyService.list();
-        for (Agency c:
-             agencies) {
-            out.println(c.getName());
-        }
         out.println("</body></html>");
     }
 
