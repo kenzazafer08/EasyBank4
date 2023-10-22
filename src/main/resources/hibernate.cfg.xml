@@ -3,10 +3,12 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Easybank</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Easybank2</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">1234</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <mapping class="com.example.easybank4.dto.Agency"/>
+        <mapping class="com.example.easybank4.dto.Person"/>
+        <mapping class="com.example.easybank4.dto.Client"/>
     </session-factory>
 </hibernate-configuration>
