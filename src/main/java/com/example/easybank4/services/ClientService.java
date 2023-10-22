@@ -22,9 +22,7 @@ public class ClientService {
     public Optional<Client> getClientByCode(String code) {
         Optional<Client> client = clientDAO.searchByCode(code);
         if(client.isPresent()){
-            if(!client.get().getDeleted()){
                 return client;
-            }
         }
         return Optional.empty();
     }

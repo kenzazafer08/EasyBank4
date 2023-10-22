@@ -1,6 +1,7 @@
 package com.example.easybank4.Impl;
 
 import com.example.easybank4.dao.ClientI;
+import com.example.easybank4.dto.Agency;
 import com.example.easybank4.dto.Client;
 import com.example.easybank4.dto.Person;
 import com.example.easybank4.helpers.helper;
@@ -43,7 +44,14 @@ public class ClientDAO implements ClientI {
 
     @Override
     public Optional<Client> searchByCode(String code) {
-        return Optional.empty();
+        try (Session session = sessionFactory.openSession()) {
+            Client client = session.get(Client.class, code);
+
+            return Optional.of(client);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override

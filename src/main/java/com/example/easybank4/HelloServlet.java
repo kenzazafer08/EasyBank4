@@ -30,16 +30,11 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        Client client = new Client();
-        client.setFirstName("kniza");
-        client.setLastName("jaafar");
-        client.setPhone("0634047964");
-        client.setAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
-        Optional<Client> created = clientService.addClient(client);
-        if(created.isPresent()){
-            out.println("Client created successfully :"+created.get().getCode());
+        Optional<Client> found = clientService.getClientByCode("Kep");
+        if(found.isPresent()){
+            out.println("Client found successfully :"+found.get().getLastName());
         }else{
-            out.println("no client created");
+            out.println("no client found");
         }
 
         out.println("</body></html>");
