@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -16,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "client")
-public final class Client extends Person {
+@Where(clause = "deleted = false")
+public final class Client extends Person implements Serializable {
     @Id
-    @Column(name = "code")
-    private String Code;
+    private String code;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Credit> credits;
 }
