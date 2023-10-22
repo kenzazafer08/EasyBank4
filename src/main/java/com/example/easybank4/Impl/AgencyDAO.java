@@ -16,10 +16,11 @@ import java.util.Optional;
 public class AgencyDAO implements AgencyI {
     private SessionFactory sessionFactory;
 
+    public AgencyDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     public AgencyDAO() {
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.xml");
-        sessionFactory = configuration.buildSessionFactory();
     }
 
     public Optional<Agency> add(Agency agency) {
@@ -47,8 +48,7 @@ public class AgencyDAO implements AgencyI {
     public Optional<Agency> SearchByCode(String code) {
         try (Session session = sessionFactory.openSession()) {
             Agency agency = session.get(Agency.class, code);
-
-            return Optional.ofNullable(agency);
+            return Optional.of(agency);
         } catch (Exception e) {
             e.printStackTrace();
             return Optional.empty();

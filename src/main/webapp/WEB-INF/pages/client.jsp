@@ -45,7 +45,7 @@
             <nav>
                 <div class="navbar">
                     <ul style="padding-top : 30px">
-                        <li><a href="#">
+                        <li><a href="<%= request.getContextPath()%>/clients">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Clients</span>
                         </a>
@@ -55,7 +55,7 @@
                             <span class="nav-item">Employees</span>
                         </a>
                         </li>
-                        <li><a href="#">
+                        <li><a href="<%= request.getContextPath()%>/agencies">
                             <i class="fab fa-dochub"></i>
                             <span class="nav-item">Agencies</span>
                         </a>
