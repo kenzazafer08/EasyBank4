@@ -35,8 +35,6 @@ public class HelloServlet extends HttpServlet {
         client.setLastName("jaafar");
         client.setPhone("0634047964");
         client.setAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
-        client.setDeleted(false);
-        out.println(client.getFirstName());
         Optional<Client> created = clientService.addClient(client);
         if(created.isPresent()){
             out.println("Client created successfully :"+created.get().getCode());

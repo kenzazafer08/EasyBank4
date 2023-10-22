@@ -2,6 +2,7 @@ package com.example.easybank4.Impl;
 
 import com.example.easybank4.dao.ClientI;
 import com.example.easybank4.dto.Client;
+import com.example.easybank4.dto.Person;
 import com.example.easybank4.helpers.helper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,10 +24,14 @@ public class ClientDAO implements ClientI {
 
     @Override
     public Optional<Client> add(Client client) {
-        System.out.println(client.getFirstName());
         client.setCode(helper.generate(3));
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction  = session.beginTransaction();
+            client.setFirstName("kniza");
+            client.setLastName("jaafar");
+            client.setPhone("0634047964");
+            client.setAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
+            client.setCode(helper.generate(3));
             session.save(client);
             transaction.commit();
             return Optional.of(client);
