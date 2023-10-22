@@ -3,6 +3,8 @@ package com.example.easybank4.services;
 import com.example.easybank4.Impl.AgencyDAO;
 import com.example.easybank4.dao.AgencyI;
 import com.example.easybank4.dto.Agency;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +13,10 @@ public class AgencyService {
     private final AgencyI agencyDAO;
 
     public AgencyService() {
-        agencyDAO = new AgencyDAO();
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate.cfg.xml");
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        agencyDAO = new AgencyDAO(sessionFactory);
     }
 
     public Optional<Agency> AddAgency(Agency agency){
@@ -19,13 +24,7 @@ public class AgencyService {
     }
 
     public Optional<Agency> findAgency(String code){
-        Optional<Agency> agency = agencyDAO.SearchByAddress(code);
-        if(agency.isPresent()){
-            if(agency.get().getDeleted()){
-                return Optional.empty();
-            }return agency;
-        }
-        return Optional.empty();
+        return agencyDAO.SearchByCode(code);
     }
 
     public boolean deleteAgency(String code){

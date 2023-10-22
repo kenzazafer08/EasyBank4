@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@WebServlet( urlPatterns = {"/clients" , "/createClient", "/register","/deleteClient" , "/updateClient" , "/edit", "/client"})
+@WebServlet( urlPatterns = {"/clients"  ,"/register","/deleteClient" ,  "/edit", "/client"})
 public class ClientServlet extends HttpServlet {
 
     ClientService clientService;
