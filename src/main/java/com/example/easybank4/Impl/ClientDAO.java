@@ -97,6 +97,14 @@ public class ClientDAO implements ClientI {
 
     @Override
     public Optional<Client> update(Client client) {
-        return Optional.empty();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(client);
+            transaction.commit();
+            return Optional.of(client);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 }

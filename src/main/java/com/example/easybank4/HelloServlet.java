@@ -29,13 +29,18 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        List<Client> founds = clientService.searchByAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
-        if(!founds.isEmpty()){
-            for (Client f: founds) {
-                out.println(f.getFirstName());
-            }
+        Client client = new Client();
+        client.setFirstName("kenza");
+        client.setLastName("zafer");
+        client.setAddress("youcode");
+        client.setPhone("911");
+        client.setDeleted(false);
+        client.setCode("Kep");
+        Optional<Client> updated = clientService.updateClient(client);
+        if(updated.isPresent()){
+            out.println("client updated successfully " + updated.get().getLastName());
         }else{
-            out.println("No client found");
+            out.println("No client updated");
         }
         out.println("</body></html>");
     }
