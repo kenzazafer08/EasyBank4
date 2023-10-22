@@ -29,11 +29,13 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        boolean found = clientService.deleteClient("Kep");
-        if(found){
-            out.println("Client deleted successfully ");
+        List<Client> founds = clientService.searchByAddress("70 RUE ELOUMAM QUA HOPITAL SAFI");
+        if(!founds.isEmpty()){
+            for (Client f: founds) {
+                out.println(f.getFirstName());
+            }
         }else{
-            out.println("no client deleted");
+            out.println("No client found");
         }
         out.println("</body></html>");
     }

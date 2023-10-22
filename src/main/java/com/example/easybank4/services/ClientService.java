@@ -2,6 +2,7 @@ package com.example.easybank4.services;
 
 import com.example.easybank4.Impl.ClientDAO;
 import com.example.easybank4.dao.ClientI;
+import com.example.easybank4.dto.Agency;
 import com.example.easybank4.dto.Client;
 
 
@@ -38,4 +39,9 @@ public class ClientService {
     public Optional<Client> updateClient(Client client) {
         return clientDAO.update(client);
     }
+
+    public List<Client> searchByAddress(String Address){
+        return clientDAO.SearchByAddress(Address);
+    }
+
 }

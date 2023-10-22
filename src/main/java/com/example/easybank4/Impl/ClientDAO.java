@@ -5,11 +5,14 @@ import com.example.easybank4.dto.Agency;
 import com.example.easybank4.dto.Client;
 import com.example.easybank4.dto.Person;
 import com.example.easybank4.helpers.helper;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +80,19 @@ public class ClientDAO implements ClientI {
     @Override
     public List<Client> showList() {
         return null;
+    }
+
+    @Override
+    public List<Client> SearchByAddress(String address) {
+        try (Session session = sessionFactory.openSession()) {
+            Criteria criteria = session.createCriteria(Client.class);
+            criteria.add(Restrictions.eq("address", address));
+            List<Client> clients = criteria.list();
+            return clients;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
     @Override
