@@ -16,5 +16,5 @@ public class Person {
     protected String lastName;
     protected String phone;
     protected String address;
-    private Boolean deleted;
+    protected Boolean deleted;
 }
