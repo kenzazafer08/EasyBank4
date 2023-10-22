@@ -79,7 +79,15 @@ public class ClientDAO implements ClientI {
 
     @Override
     public List<Client> showList() {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            Criteria criteria = session.createCriteria(Client.class);
+            criteria.add(Restrictions.eq("deleted", false));
+            List<Client> clients = criteria.list();
+            return clients;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
