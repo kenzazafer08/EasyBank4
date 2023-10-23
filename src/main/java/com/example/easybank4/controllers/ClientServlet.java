@@ -1,6 +1,7 @@
 package com.example.easybank4.controllers;
 
 import com.example.easybank4.dto.Client;
+
 import com.example.easybank4.services.ClientService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @WebServlet( urlPatterns = {"/clients"  ,"/register","/deleteClient" ,  "/edit", "/client"})
 public class ClientServlet extends HttpServlet {
 
@@ -21,6 +23,7 @@ public class ClientServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         clientService = new ClientService();
+
     }
 
     @Override
@@ -52,7 +55,9 @@ public class ClientServlet extends HttpServlet {
     }
 
     public void clients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Client> clients = clientService.getClientList();
+
 
         if (clients.isEmpty()) {
             request.setAttribute("noClients", true);
@@ -69,7 +74,9 @@ public class ClientServlet extends HttpServlet {
         if (clientIdParam != null && !clientIdParam.isEmpty()) {
             try {
 
+
                 Optional<Client> client = clientService.getClientByCode(clientIdParam);
+
 
                 if (client.isPresent()) {
                     request.setAttribute("client", client.get());
@@ -94,7 +101,9 @@ public class ClientServlet extends HttpServlet {
         client.setAddress(request.getParameter("address"));
         client.setDeleted(false);
 
+
         Optional<Client> success = clientService.addClient(client);
+
         if (success.isPresent()) {
             try {
                 System.out.println(success.get().getFirstName());
@@ -119,7 +128,9 @@ public class ClientServlet extends HttpServlet {
         if (client.getCode() != null && !client.getCode().isEmpty()) {
             try {
 
+
                 Optional<Client> success = clientService.updateClient(client);
+
 
                 if (success.isPresent()) {
                     response.sendRedirect(request.getContextPath() + "/clients");
@@ -139,7 +150,9 @@ public class ClientServlet extends HttpServlet {
 
         if (clientIdParam != null && !clientIdParam.isEmpty()) {
             try {
+
                 boolean success = clientService.deleteClient(clientIdParam);
+
 
                 if (success) {
                     response.sendRedirect(request.getContextPath() + "/clients?deleted=true");

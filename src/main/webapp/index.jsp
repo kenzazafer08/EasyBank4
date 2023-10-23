@@ -54,6 +54,7 @@
 
                 <div class="right">
                     <img src="./img/person.png" alt="Person Image" class="person" />
+
                 </div>
             </div>
         </div>

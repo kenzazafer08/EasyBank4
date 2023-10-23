@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,3 +16,4 @@ public class Person {
     protected String address;
     protected Boolean deleted;
 }
+

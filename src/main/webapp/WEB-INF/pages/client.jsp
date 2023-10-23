@@ -101,7 +101,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:choose>
+                        <c:choose>  
+
                         <c:when test="${not empty client}">
                             <tr>
                                 <td>${client.getCode()}</td>
