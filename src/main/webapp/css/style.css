@@ -391,3 +391,174 @@ header .container {
         font-size: 0.8rem;
     }
 }
+.form-step {
+    display: none;
+}
+.form-step.active {
+    display: block;
+}
+.multi-step{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.next-step{
+        display: inline-block;
+        padding: 0.9rem 1.9rem;
+        color: #fff !important;
+        background-color: var(--mainColor);
+        border-radius: 16px;
+        text-transform: capitalize;
+        transition: 0.3s;
+    }
+
+.next-step:hover {
+    background-color: var(--hoverColor);
+    transform: scale(1) !important;
+}
+.prev-step {
+    color: var(--lightTwo);
+    display: inline-block;
+    transition: 0.3s;
+    background-color: white;
+}
+
+.prev-step:hover {
+    color: var(--hoverColor);
+    transform: scale(1.05);
+}
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.select {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: transparent;
+}
+
+.slidecontainer {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="range"] {
+    width: 80%;
+    margin: 0 auto;
+}
+
+output {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+h2{
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.range-container {
+    display: flex;
+    align-items: center;
+}
+
+input[type="range"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    width: 200px;
+}
+.form-group a {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+output {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: darkgreen;
+}
+/* Change the color of the range track */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px; /* Adjust the height of the track */
+    background: #ccc; /* Set the background color of the track */
+    outline: none;
+    border-radius: 5px; /* Rounded corners for the track */
+}
+
+/* Change the color of the range thumb (slider) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px; /* Adjust the width of the thumb */
+    height: 15px; /* Adjust the height of the thumb */
+    background: var(--hoverColor); /* Set the background color of the thumb */
+    border: 2px solid var(--hoverColor); /* Add a border to the thumb */
+    border-radius: 50%; /* Create a circular thumb */
+    cursor: pointer;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.client-info {
+    display: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.client-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.client-info-label {
+    font-weight: bold;
+}
+

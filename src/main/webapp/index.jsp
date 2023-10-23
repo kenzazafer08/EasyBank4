@@ -22,8 +22,9 @@
 
                 <div class="links">
                     <ul>
-                        <li><a href="#">Acceuil</a></li>
-                        <li><a href="/clients" class="btn">Dashboard</a></li>
+                        <li><a href="/index.jsp">Acceuil</a></li>
+                        <li><a href="<%= request.getContextPath()%>/simulation" >Simulation</a></li>
+                        <li><a href="<%= request.getContextPath()%>/clients" class="btn">Dashboard</a></li>
                     </ul>
                 </div>
 
