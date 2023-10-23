@@ -1,8 +1,7 @@
 package com.example.easybank4.controllers;
 
 import com.example.easybank4.dto.Client;
-import com.example.easybank4.dto.Person;
-import com.example.easybank4.impl.ClientDAO;
+
 import com.example.easybank4.services.ClientService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,29 +9,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 
-@WebServlet( urlPatterns = {"/clients", "/register", "/deleteClient", "/edit", "/client"})
+
+@WebServlet( urlPatterns = {"/clients"  ,"/register","/deleteClient" ,  "/edit", "/client"})
 public class ClientServlet extends HttpServlet {
 
-    private static ClientService _clientService;
-
+    ClientService clientService;
     @Override
     public void init() throws ServletException {
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.xml");
-        configuration.setProperty("hibernate.show_sql", "true");
-        configuration.setProperty("hibernate.format_sql", "true");
-        configuration.setProperty("hibernate.use_sql_comments", "true");
-        SessionFactory _sessionFactory = configuration.buildSessionFactory();
-        ClientDAO _clientDAO = new ClientDAO(_sessionFactory);
-        _clientService = new ClientService(_clientDAO);
+        clientService = new ClientService();
+
     }
 
     @Override
@@ -64,7 +55,9 @@ public class ClientServlet extends HttpServlet {
     }
 
     public void clients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Person> clients = _clientService.findAll();
+
+        List<Client> clients = clientService.getClientList();
+
 
         if (clients.isEmpty()) {
             request.setAttribute("noClients", true);
@@ -81,7 +74,9 @@ public class ClientServlet extends HttpServlet {
         if (clientIdParam != null && !clientIdParam.isEmpty()) {
             try {
 
-                Optional<Person> client = _clientService.findById(clientIdParam);
+
+                Optional<Client> client = clientService.getClientByCode(clientIdParam);
+
 
                 if (client.isPresent()) {
                     request.setAttribute("client", client.get());
@@ -106,7 +101,9 @@ public class ClientServlet extends HttpServlet {
         client.setAddress(request.getParameter("address"));
         client.setDeleted(false);
 
-        Optional<Person> success = _clientService.save(client);
+
+        Optional<Client> success = clientService.addClient(client);
+
         if (success.isPresent()) {
             try {
                 System.out.println(success.get().getFirstName());
@@ -131,7 +128,9 @@ public class ClientServlet extends HttpServlet {
         if (client.getCode() != null && !client.getCode().isEmpty()) {
             try {
 
-                Optional<Person> success = _clientService.update(client);
+
+                Optional<Client> success = clientService.updateClient(client);
+
 
                 if (success.isPresent()) {
                     response.sendRedirect(request.getContextPath() + "/clients");
@@ -151,7 +150,9 @@ public class ClientServlet extends HttpServlet {
 
         if (clientIdParam != null && !clientIdParam.isEmpty()) {
             try {
-                boolean success = _clientService.delete(clientIdParam);
+
+                boolean success = clientService.deleteClient(clientIdParam);
+
 
                 if (success) {
                     response.sendRedirect(request.getContextPath() + "/clients?deleted=true");

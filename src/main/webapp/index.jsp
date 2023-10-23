@@ -16,7 +16,7 @@
         <header>
             <div class="container">
                 <div class="logo">
-                    <img src="img/logo.png" alt="Logo" />
+                    <img src="./img/logo.png" alt="Logo" />
                     <h3>EASY BANK</h3>
                 </div>
 
@@ -53,7 +53,8 @@
                 </div>
 
                 <div class="right">
-                    <img src="img/person.png" alt="Person Image" class="person" />
+                    <img src="./img/person.png" alt="Person Image" class="person" />
+
                 </div>
             </div>
         </div>

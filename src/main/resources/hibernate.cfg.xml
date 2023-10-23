@@ -5,23 +5,19 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Easybanke</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Easybank2</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">6EZHWJ5URS</property>
-        <property name="hibernate.package_scanner.scanned_packages">com.example.easybank4.dto</property>
 
-
-
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.show_sql">true</property>
 
         <property name="hibernate.hbm2ddl.auto">update</property>
-
-        <mapping class="com.example.easybank4.dto.Client" />
+        <mapping class="com.example.easybank4.dto.Agency"/>
+        <mapping class="com.example.easybank4.dto.Person"/>
         <mapping class="com.example.easybank4.dto.Employee" />
-        <mapping class="com.example.easybank4.dto.Person" />
-        <mapping class="com.example.easybank4.dto.Agency" />
+        <mapping class="com.example.easybank4.dto.Client"/>
         <mapping class="com.example.easybank4.dto.Credit" />
-
     </session-factory>
 
 </hibernate-configuration>

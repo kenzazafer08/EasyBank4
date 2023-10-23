@@ -101,51 +101,52 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:choose>
-                            <c:when test="${not empty client}">
-                                <tr>
-                                    <td>${client.getCode()}</td>
-                                    <td>${client.getFirstName()}</td>
-                                    <td>${client.getLastName()}</td>
-                                    <td>${client.getPhone()}</td>
-                                    <td>${client.getAddress()}</td>
-                                    <td style="display: flex; justify-content: space-between;">
-                                        <div class="cta" style="margin-right: 10px">
-                                            <a href="#" onclick="updateClient('${client.getCode()}', '${client.getFirstName()}', '${client.getLastName()}',  '${client.getPhone()}', '${client.getAddress()}')" class="btn"><i class="fas fa-edit"></i></a>
-                                        </div>
-                                        <div class="cta">
-                                            <a href="#" class="btn" onclick="confirmDelete('${client.getCode()}', '${client.getFirstName()}')" style="background-color: #9d3f3f"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:when>
-                            <c:when test="${noClientFound or invalidClientId}">
-                                <tr>
-                                    <td colspan="5">No client with this code.</td>
-                                </tr>
-                            </c:when>
-                            <c:otherwise>
-                                <c:if test="${not empty requestScope.clients}">
-                                    <%--@elvariable id="clients" type="java.util.List"--%>
-                                    <c:forEach var="client" items="${requestScope.clients}">
-                                        <tr>
-                                            <td class="lalign">${client.getCode()}</td>
-                                            <td>${client.getFirstName()}</td>
-                                            <td>${client.getLastName()}</td>
-                                            <td>${client.getPhone()}</td>
-                                            <td>${client.getAddress()}</td>
-                                            <td style="display: flex; justify-content: space-between;">
-                                                <div class="cta" style="margin-right: 10px">
-                                                    <a href="#" onclick="updateClient('${client.getCode()}', '${client.getFirstName()}', '${client.getLastName()}',  '${client.getPhone()}', '${client.getAddress()}')" class="btn"><i class="fas fa-edit"></i></a>
-                                                </div>
-                                                <div class="cta">
-                                                    <a href="#" class="btn" onclick="confirmDelete('${client.getCode()}', '${client.getFirstName()}')" style="background-color: #9d3f3f"><i class="fas fa-trash"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:if>
-                            </c:otherwise>
+                        <c:choose>  
+
+                        <c:when test="${not empty client}">
+                            <tr>
+                                <td>${client.getCode()}</td>
+                                <td>${client.getFirstName()}</td>
+                                <td>${client.getLastName()}</td>
+                                <td>${client.getPhone()}</td>
+                                <td>${client.getAddress()}</td>
+                                <td style="display: flex; justify-content: space-between;">
+                                    <div class="cta" style="margin-right: 10px">
+                                        <a href="#" onclick="updateClient('${client.getCode()}', '${client.getFirstName()}', '${client.getLastName()}',  '${client.getPhone()}', '${client.getAddress()}')" class="btn"><i class="fas fa-edit"></i></a>
+                                    </div>
+                                    <div class="cta">
+                                        <a href="#" class="btn" onclick="confirmDelete('${client.getCode()}', '${client.getFirstName()}')" style="background-color: #9d3f3f"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:when test="${noClientFound or invalidClientId}">
+                            <tr>
+                                <td colspan="5">No client with this code.</td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:if test="${not empty requestScope.clients}">
+                                <%--@elvariable id="clients" type="java.util.List"--%>
+                                <c:forEach var="client" items="${requestScope.clients}">
+                                    <tr>
+                                        <td class="lalign">${client.getCode()}</td>
+                                        <td>${client.getFirstName()}</td>
+                                        <td>${client.getLastName()}</td>
+                                        <td>${client.getPhone()}</td>
+                                        <td>${client.getAddress()}</td>
+                                        <td style="display: flex; justify-content: space-between;">
+                                            <div class="cta" style="margin-right: 10px">
+                                                <a href="#" onclick="updateClient('${client.getCode()}', '${client.getFirstName()}', '${client.getLastName()}',  '${client.getPhone()}', '${client.getAddress()}')" class="btn"><i class="fas fa-edit"></i></a>
+                                            </div>
+                                            <div class="cta">
+                                                <a href="#" class="btn" onclick="confirmDelete('${client.getCode()}', '${client.getFirstName()}')" style="background-color: #9d3f3f"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                        </c:otherwise>
                         </c:choose>
                         </tbody>
                     </table>
