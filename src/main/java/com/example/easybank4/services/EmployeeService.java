@@ -1,4 +1,4 @@
-package com.example.easybank4.service;
+package com.example.easybank4.services;
 
 import com.example.easybank4.dao.IPersonData;
 import com.example.easybank4.dto.Person;

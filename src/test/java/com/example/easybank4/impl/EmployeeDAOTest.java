@@ -58,7 +58,7 @@ public class EmployeeDAOTest {
         assertNotNull(employees);
     }
     @Test
-    public void findById() {
+    public void findByIdTest() {
         Optional<Person> employee = _employeeDAO.findById("ee1233");
         assertNotNull(employee.orElse(null));
     }

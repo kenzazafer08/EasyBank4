@@ -1,7 +1,7 @@
 package com.example.easybank4.impl;
 
 import com.example.easybank4.dao.IPersonData;
-import com.example.easybank4.dto.Employee;
+import com.example.easybank4.dto.Client;
 import com.example.easybank4.dto.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,18 +11,19 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public class EmployeeDAO implements IPersonData {
+public class ClientDAO implements IPersonData {
     private final SessionFactory _sessionFactory;
-    public EmployeeDAO(SessionFactory sessionFactory) {
+    public ClientDAO(SessionFactory sessionFactory) {
         this._sessionFactory = sessionFactory;
     }
+
     @Override
     public List<Person> findAll() {
-        List<Person> employees = null;
+        List<Person> clients = null;
         Transaction transaction = null;
         try (Session session = _sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            employees = session.createQuery("FROM com.example.easybank4.dto.Employee", Person.class).list();
+            clients = session.createQuery("FROM com.example.easybank4.dto.Client", Person.class).list();
             transaction.commit();
         }catch (Exception e) {
             if (transaction != null) {
@@ -30,7 +31,7 @@ public class EmployeeDAO implements IPersonData {
             }
             e.printStackTrace();
         }
-        return employees;
+        return clients;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class EmployeeDAO implements IPersonData {
         Transaction transaction = null;
         try(Session session = _sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            Employee employee = session.get(Employee.class, s);
-            if (employee != null) {
+            Client client = session.get(Client.class, s);
+            if (client != null) {
                 transaction.commit();
-                return Optional.of(employee);
+                return Optional.of(client);
             }else {
-                throw new Exception("Employee not found!!");
+                throw new Exception("Client not found!!");
             }
         }catch (Exception e) {
             if (transaction != null) {
@@ -73,18 +74,18 @@ public class EmployeeDAO implements IPersonData {
         Transaction transaction = null;
         try (Session session = _sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            if (entity instanceof Employee e) {
-                Serializable employeeId = session.save(e);
-                if (employeeId != null) {
+            if (entity instanceof Client c) {
+                Serializable clientId = session.save(c);
+                if (clientId != null) {
                     transaction.commit();
                     return Optional.of(entity);
                 }
                 else {
-                    throw new Exception("Employee not inserted!!");
+                    throw new Exception("Client not inserted!!");
                 }
             }
             else {
-                throw new Exception("Entity is not of an employee instance");
+                throw new Exception("Entity is not of a client instance");
             }
         } catch (Exception e) {
             if (transaction != null) { transaction.rollback(); }
@@ -102,26 +103,24 @@ public class EmployeeDAO implements IPersonData {
         Transaction transaction = null;
         try (Session session = _sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            if (entity instanceof Employee e) {
-                Employee employee = session.get(Employee.class, e.getNumber());
-                if (employee != null) {
-                    employee.setFirstName(e.getFirstName());
-                    employee.setLastName(e.getLastName());
-                    employee.setAddress(e.getAddress());
-                    employee.setDeleted(e.getDeleted());
-                    employee.setPhone(e.getPhone());
-                    employee.setRecruitementDate(e.getRecruitementDate());
-                    employee.setEmail(e.getEmail());
-                    session.update(employee);
+            if (entity instanceof Client c) {
+                Client client = session.get(Client.class, c.getCode());
+                if (client != null) {
+                    client.setFirstName(c.getFirstName());
+                    client.setLastName(c.getLastName());
+                    client.setAddress(c.getAddress());
+                    client.setDeleted(c.getDeleted());
+                    client.setPhone(c.getPhone());
+                    session.update(client);
 
                     transaction.commit();
-                    return Optional.of(employee);
+                    return Optional.of(client);
                 }else {
-                    throw new Exception("Employee not found!!");
+                    throw new Exception("Client not found!!");
                 }
             }
             else {
-                throw new Exception("Entity is not of an employee instance");
+                throw new Exception("Entity is not of a client instance");
             }
         }catch (Exception e) {
             if (transaction != null) {
@@ -141,16 +140,16 @@ public class EmployeeDAO implements IPersonData {
         Transaction transaction = null;
         try (Session session = _sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            Employee employee = session.get(Employee.class, s);
-            if (employee != null) {
-                //employee.setDeleted(true);
-                //session.update(employee);
-                session.delete(employee);
+            Client client = session.get(Client.class, s);
+            if (client != null) {
+                //client.setDeleted(true);
+                //session.update(client);
+                session.delete(client);
                 transaction.commit();
                 return true;
             }
             else {
-                throw new Exception("Employee not found!!");
+                throw new Exception("Client not found!!");
             }
         }catch (Exception e) {
             if (transaction != null) {
@@ -165,9 +164,9 @@ public class EmployeeDAO implements IPersonData {
         Transaction transaction = null;
         try (Session session = _sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            List<Employee> employees = session.createQuery("FROM com.example.easybank4.dto.Employee", Employee.class).list();
-            for (Employee employee : employees) {
-                session.delete(employee);
+            List<Client> clients = session.createQuery("FROM com.example.easybank4.dto.Client", Client.class).list();
+            for (Client client : clients) {
+                session.delete(client);
             }
             transaction.commit();
             return true;

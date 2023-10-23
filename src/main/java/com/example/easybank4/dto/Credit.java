@@ -1,4 +1,5 @@
 package com.example.easybank4.dto;
+import com.example.easybank4.enums.CreditStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,10 @@ public class Credit {
     @Column(name = "deadline")
     private int duration;
     private String description;
+    @Column(name = "status")
     private CreditStatus status;
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
     @ManyToOne
     @JoinColumn(name = "agency_id")
     private Agency agency;

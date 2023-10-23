@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employee")
-@Where(clause = "deleted = false")
 public final class Employee extends Person implements Serializable {
     @Id
     @Column(name = "number")

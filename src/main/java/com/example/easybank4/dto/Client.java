@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "client")
-@Where(clause = "deleted = false")
 public final class Client extends Person implements Serializable {
     @Id
     private String code;
