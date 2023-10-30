@@ -11,5 +11,6 @@
         <mapping class="com.example.easybank4.dto.Person"/>
         <mapping class="com.example.easybank4.dto.Client"/>
         <mapping class="com.example.easybank4.dto.Employee"/>
+        <mapping class="com.example.easybank4.dto.Credit"/>
     </session-factory>
 </hibernate-configuration>
