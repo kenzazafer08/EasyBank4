@@ -112,6 +112,14 @@
                         </c:forEach>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="employees">Chose an employee</label>
+                    <select id="employees">
+                        <c:forEach var="employee" items="${employees}">
+                            <option value="${employee.getNumber()}">${employee.getFirstName()} ${employee.getLastName()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
                 <p>Avez vous des crédits en cours ?</p>
                 <div style="display: flex; justify-content: flex-start; align-items: center; padding: 2px">
                     <input type="radio" id="html" name="fav_language" value="OUI">

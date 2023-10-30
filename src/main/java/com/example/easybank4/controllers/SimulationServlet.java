@@ -2,9 +2,11 @@ package com.example.easybank4.controllers;
 
 import com.example.easybank4.dto.Agency;
 import com.example.easybank4.dto.Client;
+import com.example.easybank4.dto.Employee;
 import com.example.easybank4.services.AgencyService;
 import com.example.easybank4.services.ClientService;
 
+import com.example.easybank4.services.EmployeeService;
 import com.google.gson.JsonObject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,11 +24,13 @@ public class SimulationServlet extends HttpServlet {
 
     ClientService clientService;
     AgencyService agencyService;
+    EmployeeService employeeService;
 
     @Override
     public void init() throws ServletException {
         clientService = new ClientService();
         agencyService = new AgencyService();
+        employeeService = new EmployeeService();
     }
 
     @Override
@@ -74,11 +78,17 @@ public class SimulationServlet extends HttpServlet {
 
     public void simulation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Agency> agencies = agencyService.list();
+        List<Employee> employees = employeeService.getEmployeeList();
 
         if (agencies.isEmpty()) {
             request.setAttribute("noAgencies", true);
         } else {
             request.setAttribute("agencies", agencies);
+        }
+        if(employees.isEmpty()){
+            request.setAttribute("noEmployees", true);
+        } else {
+            request.setAttribute("employees", employees);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/simulation.jsp");
         dispatcher.forward(request, response);
