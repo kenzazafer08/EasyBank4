@@ -51,7 +51,7 @@
               <span class="nav-item">Clients</span>
             </a>
             </li>
-            <li><a href="#">
+            <li><a href="<%= request.getContextPath()%>/employees">
               <i class="fas fa-tasks"></i>
               <span class="nav-item">Employees</span>
             </a>
