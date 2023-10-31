@@ -130,7 +130,7 @@
 
                 <div class="button-container">
                     <button class="prev-step">Previous</button>
-                    <button type="submit" class="next-step">Submit</button>
+                    <button type="submit" class="next-step" onclick="addCredit()">Submit</button>
                 </div>
             </div>
         </form>
@@ -148,7 +148,7 @@
 <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 <script src="js/script.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+     document.addEventListener("DOMContentLoaded", function() {
         const next = document.getElementById("next");
         const info = document.getElementById("info");
         const clientCodeInput = document.getElementById("clientCode");
@@ -277,6 +277,21 @@
         updateRangeInput(durationValue, durationRange);
         updateMonthlyPayment();
     });
+
+    function addCredit(){
+        const employee = document.getElementById("employees").value;
+        const agency = document.getElementById("agencies").value;
+        const client = document.getElementById("clientCode").value;
+        const amount = document.getElementById("amountValue").value;
+        const duration = document.getElementById("durationRange").value;
+        const description = document.getElementById("description").value;
+        fetch("/registerCredit?employeeNumber=" + employee + "&agencyCode=" + agency + "&clientCode=" + client + "&amount=" + amount + "&description=" + description + "&duration=" + duration, {
+            method: 'POST'
+        })
+            .then(response => {
+                window.location.href = "<%= request.getContextPath()%>/credits";
+            })
+    }
 
 </script>
 </body>

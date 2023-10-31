@@ -61,9 +61,9 @@
               <span class="nav-item">Agencies</span>
             </a>
             </li>
-            <li><a href="#">
+            <li><a href="<%= request.getContextPath()%>/credits">
               <i class="fas fa-chart-bar"></i>
-              <span class="nav-item">Simulations</span>
+              <span class="nav-item">Credits</span>
             </a>
             </li>
             <li><a href="#" class="logout">
